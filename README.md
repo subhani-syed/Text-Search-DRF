@@ -15,25 +15,29 @@ Clone this repo by using the following command
 
 It's recommended to use a virtual environment to manage project dependencies.
 1.  Create a virtual environment:
-
-	`python -m venv venv`  
-2. Activate the virtual environment:
-
-    `source venv/bin/activate  # For Linux/macOS`
-
-	`.\venv\Scripts\activate   # For Windows`
+```
+python -m venv venv
+```
+1. Activate the virtual environment:
+```
+source venv/bin/activate  # For Linux/macOS
+.\venv\Scripts\activate   # For Windows
+```
 ## Setup Running
 
 ### Use .env File
 
-Create a `.env` file in the project root directory and define the environment variables needed for your application, such as database credentials, secret keys, etc.
+Create a `.env` file in the project root directory and define the environment variables needed for your application, such as database credentials, secret keys, etc. The below is an example
 ```
-SECRET_KEY=your_secret_key_here
-DEBUG=True
-DB_NAME=your_db_name
-DB_USER=your_db_user
-DB_PASSWORD=your_db_password
-# Add other environment variables as needed
+SECRET_KEY=your_secret_key
+PG_USER=your_username
+PG_PWD=your_pwd
+PG_HOST=your_host
+PG_DB=your_db
+PG_PORT=your_db_port
+POSTGRES_USER=postgre_user
+POSTGRES_PASSWORD=postgre_pwd
+POSTGRES_DB=postgre_db
 ```
 ## Setup and Running
 
@@ -46,8 +50,10 @@ This project uses Docker Compose for containerization. To run the application us
 2.  Navigate to the project directory containing the `docker-compose.yml` file.
     
 3.  Run the following command:
+```
+docker-compose up --build
+```
 
-    `docker-compose up --build` 
 
 
 This command will build and run the Docker containers for the Django app and PostgreSQL database.

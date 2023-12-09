@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "bcfa6f69-225c-4253-a48c-6df459c07bab",
+		"name": "Text Search API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31700228"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/api/token/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();",
+							"var access_token = responseJson.access;",
+							"pm.globals.set(\"access_token\", access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk3MjUyMTAwLCJpYXQiOjE2OTcyNTE4MDAsImp0aSI6IjdlNjAyNWIxNWU4MDQ1ZmE5OTM0YWFmMDAyYjRjYjVjIiwidXNlcl9pZCI6NX0.M_2s3WuWWnFLVNS80QueVHM5E8adthLfCmp7JjtKEUk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin@admin.com\",\n    \"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/token/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/upload/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "payload",
+							"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus non magna ut rhoncus. Integer dictum sodales nunc. Aenean imperdiet, nisi sed consectetur blandit, eros turpis imperdiet dolor, quis bibendum sem ex in purus. Phasellus vel lacus quis metus pellentesque commodo id at eros. Donec tincidunt fermentum ligula. Proin semper congue augue, nec molestie neque tincidunt quis. Donec euismod nulla in rhoncus placerat.\n\nPhasellus sodales pellentesque ligula, id sollicitudin lorem luctus et. Cras in mi sapien. Donec feugiat, felis vulputate fringilla tempor, ante dolor sollicitudin nulla, sed egestas elit lacus non libero. Pellentesque feugiat elit libero, at commodo elit eleifend interdum. Proin at massa non magna tincidunt cursus at non urna. Suspendisse iaculis congue imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent fringilla facilisis mauris non vestibulum. Vestibulum porttitor felis ut porttitor scelerisque. Sed a interdum leo, ut convallis tortor. Donec vulputate sapien at diam tempor, id dapibus enim malesuada. Nunc aliquam volutpat erat, at ultricies metus ullamcorper ac. Proin non velit dui. Aliquam et molestie ex, eget tincidunt quam. Cras scelerisque nulla sit amet erat porttitor malesuada.\n\nInteger efficitur aliquet mauris, non pellentesque dui. Aenean ac sagittis velit. Quisque mauris odio, blandit vitae ante non, ultrices pulvinar justo. Vestibulum lobortis fringilla neque eu suscipit. Morbi condimentum mattis augue in iaculis. Cras turpis metus, consequat in mollis in, pulvinar sit amet tellus. In mollis luctus velit ac vulputate. Cras non iaculis massa. Cras aliquam nec nibh in ultrices. Sed id viverra libero, et consectetur turpis. Duis consequat augue placerat lectus porta placerat. Sed nec vestibulum libero, eu gravida nulla. Nam viverra euismod porttitor. Integer sed nisl sem. Integer imperdiet blandit elit vitae sollicitudin. Vestibulum facilisis aliquam purus sit amet tincidunt.\n\nPellentesque sit amet malesuada risus. Donec laoreet molestie efficitur. Phasellus aliquam nulla eu metus euismod, non dignissim turpis dapibus. Donec eleifend pharetra nulla, in tempor magna commodo sed. Praesent luctus et mi eget sollicitudin. Aliquam maximus luctus gravida. Suspendisse quis scelerisque sem. In rhoncus odio et elit pellentesque tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque eu blandit tellus. Cras vitae orci risus. Morbi lobortis, metus sit amet suscipit efficitur, purus libero fermentum ligula, a blandit nisl dolor sit amet lorem. Donec fermentum sit amet libero vitae molestie. Donec non pulvinar diam.\n\nPraesent condimentum, ligula et venenatis tristique, arcu odio laoreet leo, at porta enim sapien ac nunc. Donec dapibus sem sed libero vestibulum, nec elementum purus tincidunt. Nunc id sem auctor, rutrum erat ut, pulvinar neque. In hac habitasse platea dictumst. Etiam ac dui risus. Phasellus enim nunc, lobortis at est ut, ullamcorper porta ipsum. Proin at faucibus augue, vel dapibus ipsum. Suspendisse potenti.\n\nAliquam ante elit, aliquet fringilla nisl eget, tincidunt lacinia turpis. Sed quis libero tempor, aliquet justo non, aliquet ipsum. Aenean quis sapien et felis consectetur pellentesque. Pellentesque vel vehicula tortor. Donec ornare erat nunc, eget viverra ex gravida quis. Vestibulum mi eros, aliquam vel odio ac, elementum suscipit tortor. Nulla facilisi. Nunc euismod iaculis mi ac elementum. Sed condimentum sed ante vel scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nNullam facilisis dapibus leo, eget lacinia ligula rhoncus a. In diam ante, viverra sed dapibus vitae, laoreet at diam. In magna nunc, porttitor sed volutpat ut, volutpat eget dolor. Donec eget tortor felis. Nam quis pellentesque massa. Cras vulputate et odio nec sagittis. Nunc sapien massa, ullamcorper sit amet tellus vel, consectetur pretium nibh. Proin tempus purus vitae lectus ultricies eleifend. Aliquam erat volutpat. Etiam augue justo, vulputate et tortor sit amet, pulvinar suscipit nibh. Cras non dignissim ligula.\n\nMaecenas feugiat magna leo. Donec sollicitudin quis sapien ut fringilla. Morbi sit amet mattis lorem. Quisque dictum felis at facilisis venenatis. Suspendisse tincidunt pretium dui, at aliquet diam sodales a. Proin a urna vel dolor sollicitudin aliquet ut sit amet enim. Nam pharetra, neque eget rutrum viverra, mi nibh iaculis justo, eu elementum ex ipsum non erat. In mollis quam eu ante volutpat tempus. Nam sit amet dictum libero. Maecenas eu blandit metus. In vel elit dignissim, malesuada leo at, semper tellus. Quisque sollicitudin ligula nunc, eget commodo neque dictum vel. Aenean id elit mollis, cursus arcu et, vestibulum mauris. Vestibulum id felis vulputate, fermentum nisl eu, hendrerit lacus. Maecenas id nibh eros. Phasellus consectetur quam ut vestibulum iaculis.\n\nVivamus dui ante, elementum ac nunc vel, maximus vehicula lectus. In egestas pulvinar accumsan. Pellentesque id urna et orci porta hendrerit. Cras varius arcu nisi, nec semper lectus dignissim nec. Mauris commodo lectus dolor, placerat accumsan eros mollis ut. Nam neque dui, vestibulum sed feugiat at, vestibulum rutrum justo. Aliquam nec vestibulum ligula, vel convallis neque.\n\nPhasellus luctus id ipsum sed auctor. Donec ultrices hendrerit nisl et euismod. Morbi cursus eros turpis, non vehicula odio mattis non. Proin facilisis posuere imperdiet. Vestibulum dictum at lorem ac viverra. Etiam mattis, velit sit amet varius aliquam, eros nibh gravida massa, sit amet dapibus diam ante sit amet ante. Cras vulputate sem nulla, in aliquam est venenatis sit amet. Pellentesque venenatis eros ac lacus suscipit porttitor. Vivamus dictum lacinia lorem, eget bibendum nunc scelerisque in. Ut dui mi, vehicula sit amet orci a, efficitur bibendum lorem.\n\nQuisque in est mi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam lacinia felis at lectus auctor, fringilla aliquet dolor consequat. Quisque nibh orci, tempor quis ultricies eget, lobortis eu tortor. Donec vitae mattis mauris. Quisque sollicitudin ligula est, ac euismod tellus molestie ut. Praesent eu suscipit justo. Mauris viverra tortor ante, vel ullamcorper velit ornare posuere. Donec fermentum viverra metus, id lobortis lectus tempor eu. Nulla id scelerisque nisi. Vestibulum pulvinar tempus velit nec tristique. Sed eleifend tristique felis, a semper magna efficitur eu. Integer ullamcorper libero in risus facilisis blandit. Nunc vestibulum efficitur elit eget volutpat. Nullam non sem eu erat cursus porta.\n\nEtiam lacus neque, scelerisque sit amet augue laoreet, malesuada rhoncus lorem. Donec vehicula, ligula ut tempus pulvinar, sem nibh dictum turpis, at interdum odio neque non arcu. Pellentesque ultricies lacus sed rhoncus luctus. Etiam tincidunt dolor eget justo tempus efficitur. Mauris et efficitur sapien, vitae tristique risus. Aenean efficitur imperdiet condimentum. Phasellus metus purus, rhoncus ut quam ac, gravida blandit neque. Maecenas lacinia, enim quis malesuada iaculis, lacus nibh dictum nisl, at convallis turpis massa sit amet felis. Duis ac est ac nibh dapibus tincidunt. Sed nec lacus est.\n\nAenean in velit vitae tortor accumsan elementum. Mauris quis volutpat augue, non viverra magna. Vivamus congue tortor sit amet tincidunt tempus. Nulla nisi diam, dictum a tellus in, viverra bibendum lorem. Suspendisse potenti. Aenean sagittis tempus sapien. Nam sit amet urna vehicula, venenatis dolor quis, placerat libero. Etiam ullamcorper metus sit amet ligula placerat, et viverra nibh luctus.\n\nNulla ut libero lobortis, faucibus dolor ut, vulputate nunc. Nunc et turpis pharetra, ultrices lorem ut, imperdiet lectus. Nunc lectus metus, viverra imperdiet suscipit eget, tempus pharetra purus. Vivamus maximus pellentesque erat, vel lacinia velit tempor vel. Aliquam bibendum metus nec sem venenatis auctor. Curabitur eget pulvinar elit, ac mattis augue. Nam vel magna vitae ligula mollis efficitur in sit amet dolor. Ut ut vestibulum ligula. Donec tempor posuere orci ac sagittis.\n\nDonec a elit id felis tristique scelerisque a at elit. Quisque id eros in purus elementum placerat sit amet in leo. Morbi bibendum velit in leo fermentum, in cursus sem facilisis. Ut blandit non mauris ut tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis eget mi id faucibus. Mauris molestie rhoncus dapibus. Sed interdum sit amet ex vitae sodales. Curabitur pretium ullamcorper ante, ut efficitur massa aliquet congue. In maximus rhoncus nunc sit amet bibendum. Suspendisse consectetur metus at sem lacinia, sed fermentum enim rhoncus. Sed eu magna venenatis, tincidunt elit a, pretium nulla. Donec ac nunc fringilla massa tristique luctus. Nullam finibus convallis maximus. Nulla arcu leo, pretium hendrerit auctor et, auctor non lacus.\n\nMaecenas dapibus justo bibendum quam porttitor vestibulum. Nullam nec blandit tortor, eget tempor felis. Integer nec eros rutrum, dictum turpis vel, consectetur neque. Donec dapibus enim ac est vestibulum blandit. Duis at gravida nisl. Curabitur fringilla tortor lobortis massa consectetur, sit amet elementum arcu facilisis. Morbi bibendum varius ante sit amet rutrum. Phasellus quam nulla, bibendum nec arcu sit amet, eleifend euismod sapien. Fusce eu erat vehicula, gravida magna et, auctor ligula.\n\nProin cursus turpis lorem, vitae semper arcu consequat sed. Donec sed ultrices nibh, quis blandit quam. Curabitur id tempus felis. Suspendisse ipsum metus, auctor a eros at, vestibulum sodales erat. Aenean tincidunt mattis massa pellentesque iaculis. Sed sodales rhoncus libero, fringilla ullamcorper risus vulputate ac. In feugiat risus ac ornare ultrices. Suspendisse malesuada mi quis vehicula mattis. Mauris a pharetra justo.\n\nSuspendisse eu turpis laoreet, euismod ex consectetur, dignissim turpis. Cras non purus eget nunc aliquam tempor sit amet ut mi. Vivamus non maximus magna. Sed ultricies diam nibh, eu ultricies mi accumsan ac. Maecenas maximus non mi vel porttitor. Sed eget justo id dolor euismod tincidunt et ac tellus. Mauris egestas lobortis placerat. Vestibulum mattis augue sed egestas vehicula. Fusce accumsan arcu id egestas condimentum.\n\nIn a ligula imperdiet, efficitur nisi eu, imperdiet turpis. In faucibus purus id purus accumsan, vel imperdiet nisi aliquet. Vivamus egestas arcu maximus porta fringilla. Fusce sit amet est convallis, commodo leo mollis, viverra enim. Aliquam eleifend dapibus lectus id porta. Sed id nulla lectus. Maecenas quis dictum nibh. Morbi ac augue ullamcorper, efficitur turpis a, maximus libero. Donec pretium velit a fermentum pretium. Vestibulum posuere bibendum massa, sed suscipit enim fringilla eget. Morbi non molestie dui. Mauris in diam finibus, congue nisl et, fermentum ipsum. Proin non sapien iaculis, fermentum dui eu, feugiat elit.\n\nAliquam pharetra eros ac eleifend volutpat. Sed sit amet interdum est, et maximus orci. Donec semper fringilla tincidunt. In in ipsum imperdiet, rhoncus eros nec, vulputate velit. Curabitur consectetur, purus efficitur congue tincidunt, leo ex convallis mauris, at suscipit nisi tortor id enim. Nulla efficitur pellentesque mauris eget condimentum. Phasellus porta tortor vel augue vehicula interdum. Ut vel lorem ut justo lacinia lacinia.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/upload/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"upload",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/search/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "search_text",
+							"value": "ipsum",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/search/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"search",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
