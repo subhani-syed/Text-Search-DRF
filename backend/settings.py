@@ -1,7 +1,7 @@
-from datetime import timedelta
-from dotenv import load_dotenv
-import os
 from pathlib import Path
+from datetime import timedelta
+import os
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -118,11 +118,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'CodeMonkDB',
+        'NAME': os.getenv('PG_DB'),
         'USER':os.getenv('PG_USER'),
         'PASSWORD':os.getenv('PG_PWD'),
-        'HOST':'localhost',
-        'PORT':'5432'
+        'HOST':os.getenv('PG_HOST'),
+        'PORT':os.getenv('PG_PORT')
     }
 }
 
