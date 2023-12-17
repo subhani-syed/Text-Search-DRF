@@ -9,7 +9,7 @@ This project implements a RESTful API using Django and Django REST framework. Th
 
 Clone this repo by using the following command
 
-`git clone https://github.com/subhani-syed/CodeMonk.git .`
+`git clone https://github.com/subhani-syed/Text-Search-DRF.git .`
 
 ### Set Up a Virtual Environment
 
